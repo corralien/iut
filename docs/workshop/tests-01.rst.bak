@@ -1,0 +1,65 @@
+Tests de l'infrastructure
+-------------------------
+
+Le déploiement de l'architecture haute-disponibilité est terminée, il est désormais temps de tester l'infrastructure. Pour cela, vous allez mettre en place un protocole opératoire de test pour vérifier le bon comportement de vos services.
+
+Tolérance aux pannes
+********************
+
+La première étape est de vérifier que l'adresse IP virtuelle (flottante) passe bien d'un loadbalancer à l'autre lorsqu'un incident survient. Il y a 2 composants à tester : Keepalived et HAProxy.
+
+Pour Keepalived :
+
+#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 10.1.102.250.
+
+#. Notez la configuration IP de l'interface *eth1* sur chaque loadbalancer avec la commande :code:`ip`.
+
+#. Stoppez le service *keepalived* avec Ansible sur le loadbalancer qui détient l'adresse IP virtuelle.
+
+#. Notez à nouveau la configuration IP de chaque loadbalancer.
+
+#. Démarrez le service *keepalived* précédemment arrêté avec Ansible.
+
+#. Vérifiez que la situation est revenue à la situation initiale.
+
+.. admonition:: Question
+
+   Notez les commandes utilisées et expliquez les résultats obtenus. |br|
+   Illustrez vos notes de capture d'écran.
+
+Pour HAProxy :
+
+Même si le réseau est fonctionnel, il est possible que le répartiteur de charge tombe. Il faut donc s'assurer que l'adresse IP virtuelle change bien de loadbalancer.
+
+#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 10.1.102.250.
+
+#. Affichez le journal de logs en continu du service *keepalived* avec la commande :code:`journalctl -n0 -u keepalived -f`.
+
+#. Stoppez le service *haproxy* avec Ansible sur le loadbalancer qui détient l'adresse IP virtuelle.
+
+#. Attendez quelques secondes et redémarrez le service *haproxy* précédemment arrêté avec Ansible.
+
+.. admonition:: Question
+
+   Observez les sorties de logs et expliquez les résultats obtenus. |br|
+   Illustrez vos observations de capture d'écran.
+
+Répartition de charge
+*********************
+
+Maintenant que la haute disponibilité de l'infrastructure est atteinte, il faut tester la répartition de charge. HAProxy intègre un panneau de supervision sur chaque loadbalancer :
+
+- `<http://admin:admin@10.1.102.11:8080/haproxy>`_ pour lb1
+- `<http://admin:admin@10.1.102.12:8080/haproxy>`_ pour lb2
+
+Lancez la commande :code:`curl -i http://www.demain.xyz/testlb.html` à partir du manager puis rafraichissez le panneau de supervision du loadbalancer maître. Répétez plusieurs fois l'opération.
+
+.. admonition:: Question
+
+   Commentez les résultats obtenus. La répartition de charge est-elle fonctionnelle ?
+
+Coupez maintenant le service *apache2* d'un des deux serveurs web puis rafraichissez le panneau de supervision du loadbalancer maître. Relancez plusieurs fois la commande :code:`curl` avant de relancer le service *apache2* précédemment arrêté.
+
+.. admonition:: Question
+
+   HAProxy est-il également tolérant aux pannes ? Expliquez.

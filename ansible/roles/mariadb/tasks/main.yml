@@ -1,0 +1,31 @@
+---
+# tasks file for mariadb
+
+- name: ajoute la clé PGP
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "0xF1656F24C74CD1D8"
+
+- name: enregistre le dépôt
+  apt_repository:
+    repo: deb http://mariadb.mirrors.ovh.net/MariaDB/repo/10.4/ubuntu bionic main
+
+- name: installe le serveurB (+ python3-mysqldb)
+  apt:
+    name: ['mariadb-server', 'python3-mysqldb']
+    update_cache: yes
+
+- name: crée un admin de base de données
+  mysql_user:
+    name: "{{ dba_username }}"
+    password: "{{ dba_password }}"
+    priv: "*.*:ALL"
+    state: present
+
+- name: configure le client mysql
+  template:
+    src: dot_my.cnf
+    dest: /home/vagrant/.my.cnf
+    mode: 0600
+    owner: vagrant
+    group: vagrant

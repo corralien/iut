@@ -1,0 +1,5 @@
+---
+# vars file for mariadb
+
+dba_username: "dbadmin"
+dba_password: "@z3rty"

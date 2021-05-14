@@ -1,0 +1,12 @@
+---
+# file: nginx.yml
+
+- hosts: vps01
+  tasks:
+  - name: install nginx
+    apt: name=nginx-core state=present update_cache=yes
+    notify: restart nginx
+
+  handlers:
+  - name: restart nginx
+    systemd: name=nginx state=restarted

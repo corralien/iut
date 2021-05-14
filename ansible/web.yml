@@ -1,0 +1,29 @@
+---
+# file: web.yml
+
+- hosts: web
+  tasks:
+  - name: install nginx
+    apt: name=nginx-core state=present
+
+  - name: configure default vhost
+    copy:
+      src: data/files/default
+      dest: /etc/nginx/sites-available/default
+    notify: restart nginx
+
+  - name: enable default vhost
+    file:
+      src: /etc/nginx/sites-available/default
+      dest: /etc/nginx/sites-enabled/default
+      state: link
+    notify: restart nginx
+
+  - name: copy index.html
+    template:
+      src: data/templates/index.html.j2
+      dest: /var/www/html/index.html
+
+  handlers:
+  - name: restart nginx
+    service: name=nginx state=restarted

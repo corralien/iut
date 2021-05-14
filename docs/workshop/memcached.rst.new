@@ -1,0 +1,38 @@
+Memcached
+---------
+
+Memcached est un système d'usage général servant à gérer la mémoire cache distribuée. Il est souvent utilisé pour augmenter la vitesse de réponse des sites web créés à partir de bases de données. Il gère les données et les objets en RAM de façon à réduire le nombre de fois qu'une même donnée stockée dans un périphérique externe est lue. (source `Wikipedia <https://fr.wikipedia.org/wiki/Memcached>`_)
+
+Objectifs
+*********
+
+Créez un rôle *memcached* qui :
+
+- installe le paquet et met à jour les dépôts,
+- modifie la configuration et **redémarre** le service.
+
+**Modules mis en oeuvre** : :code:`apt`, :code:`stat`, :code:`lineinfile`, :code:`systemd`.
+
+Réalisation
+***********
+
+.. code-block:: shell
+
+   (venv)$ mkdir -p roles/memcached/{handlers,tasks}
+   (venv)$ touch roles/memcached/{handlers,tasks}/main.yml
+
+Installation du paquet
+++++++++++++++++++++++
+
+Même procédure que pour les composants précédents.
+
+Configuration du service
+++++++++++++++++++++++++
+
+Recherchez la ligne :code:`-l 127.0.0.1` et commentez la. Utilisez le module :code:`lineinfile` et ses paramètres :code:`path`, :code:`regexp`, :code:`line` pour réaliser cette opération. N'oubliez pas de redémarrer le service le cas échéant.
+
+.. warning::
+
+	 Le fichier :code:`/etc/memcached.conf` n'existe pas avant l'installation du service. Utilisez le module :code:`stat` comme décrit dans :ref:`l'exemple du tutoriel <stat_pattern>`.
+
+Pour appliquer le rôle aux webservers, ajoutez au playbook :code:`webservers.yml` votre nouveau rôle.

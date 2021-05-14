@@ -1,0 +1,15 @@
+- name: Mon premier playbook
+  hosts: srv1, srv2, srv3
+  tasks:
+
+  - name: crée l'utilisateur devops
+    user:
+      name: devops
+      comment: Devops User
+      uid: 1040
+      group: admin
+
+  - name: installe Apache
+    apt:
+      name: apache2
+      state: present

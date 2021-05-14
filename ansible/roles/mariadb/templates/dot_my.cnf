@@ -1,0 +1,3 @@
+[client]
+user     = {{ dba_username }}
+password = {{ dba_password }}

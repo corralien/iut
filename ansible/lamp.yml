@@ -1,0 +1,29 @@
+---
+# file: lamp.yml
+
+- hosts: web
+  vars:
+    mysql_python_package_debian: 'python3-mysqldb'
+    mysql_packages: ['mariadb-client-10.4', 'mariadb-server-10.4']
+    mysql_root_password_update: false
+ 
+  pre_tasks:
+  - name: ajoute la clé PGP
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: "0xF1656F24C74CD1D8"
+    when: ansible_os_family == "Debian"
+    tags: mysql
+  
+  - name: enregistre le dépôt
+    apt_repository:
+      repo: deb http://mariadb.mirrors.ovh.net/MariaDB/repo/10.4/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} main
+      update_cache: yes
+    when: ansible_os_family == "Debian"
+    tags: mysql
+
+  roles:
+  - role: nginx
+    tags: nginx
+  - role: geerlingguy.mysql
+    tags: mysql

@@ -1,0 +1,8 @@
+vps01 ansible_host=10.1.102.11
+vps02 ansible_host=10.1.102.12
+vps03 ansible_host=10.1.102.13
+
+[web]
+vps01
+vps02
+vps03

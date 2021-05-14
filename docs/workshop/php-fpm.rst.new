@@ -1,0 +1,41 @@
+PHP-FPM
+-------
+
+Objectifs
+*********
+
+Créez un rôle *php-fpm* qui :
+
+- installe le paquet et met à jour les dépôts,
+- installe les modules *php-{curl, gd, imagick, memcache, mysql, pear}* puis **redémarre** le service,
+- active la configuration *php-fpm* dans Apache et **recharge** ce dernier,
+- configure les sessions memcache puis **redémarre** le service.
+
+**Modules mis en oeuvre** : :code:`apt`, :code:`stat`, :code:`command`, :code:`template`, :code:`file`.
+
+Réalisation
+***********
+
+.. code-block:: shell
+
+   (venv)$ mkdir -p roles/php-fpm/{files,handlers,tasks,templates}
+   (venv)$ touch roles/php-fpm/{handlers,tasks}/main.yml
+
+Installation du paquet
+++++++++++++++++++++++
+
+Même procédure que pour les composants précédents. Le paquet s'appelle :code:`php7.3-fpm`.
+
+Installation des modules
+++++++++++++++++++++++++
+
+Plutôt que d'utiliser une boucle :code:`loop` pour installer les paquets, il est possible de fournir directement une liste de noms au module :code:`apt` comme dans l'exemple suivant :
+
+.. code-block:: yaml
+
+   - name: install packages
+     apt:
+       name: [pkg1, pkg2, pkg3, pkgN]
+
+Activation de PHP-FPM dans apache
++++++++++++++++++++++++++++++++++
