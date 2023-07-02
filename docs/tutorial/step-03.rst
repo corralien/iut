@@ -6,6 +6,8 @@ Pour fonctionner Ansible a besoin de deux fichiers :
 - un fichier de configuration :code:`ansible.cfg`
 - un fichier d'inventaire :code:`hosts`
 
+Ces deux fichiers seront à créer dans le répertoire de l'utilisateur :code:`vagrant`.
+
 Configuration
 *************
 
@@ -41,9 +43,9 @@ Copiez le contenu ci-dessous et enregistrez le dans le fichier d'inventaire :cod
 .. code-block:: cfg
    :linenos:
 
-   vps01 ansible_host=10.1.102.11
-   vps02 ansible_host=10.1.102.12
-   vps03 ansible_host=10.1.102.13
+   vps01 ansible_host=192.168.56.11
+   vps02 ansible_host=192.168.56.12
+   vps03 ansible_host=192.168.56.13
 
 Test de connexion
 *****************

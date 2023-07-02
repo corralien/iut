@@ -55,7 +55,7 @@ Vous aurez besoin de créer le fichier de configuration :code:`/etc/keepalived/k
      }
    }
 
-Dans l'infrastructure, l'adresse IP virtuelle est fixée à 10.1.102.250/24 et utilise l'interface *eth1*.
+Dans l'infrastructure, l'adresse IP virtuelle est fixée à 192.168.56.250/24 et utilise l'interface *eth1*.
 
 Dans le fichier de variables de groupe :code:`group_vars/lbservers.yml`, créez une variable
 :code:`keepalived_virtual_ipaddress` avec l'adresse IP virtuelle.
@@ -77,7 +77,7 @@ Tests
 
 Il faut désormais vérifier que l'adresse IP virtuelle (flottante) passe bien d'un loadbalancer à l'autre lorsqu'un incident réseau survient.
 
-#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 10.1.102.250.
+#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 192.168.56.250.
 
 #. Notez la configuration IP de l'interface *eth1* sur chaque loadbalancer avec la commande :code:`ip addr show eth1`.
 

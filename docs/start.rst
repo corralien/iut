@@ -37,12 +37,12 @@ Plan d'adressage IP
 
 Les VMs auront toujours les adresses IP suivantes :
 
-- **admin** : 10.1.102.7
-- **vps01** : 10.1.102.11
-- **vps02** : 10.1.102.12
-- **vps03** : 10.1.102.13
+- **admin** : 192.168.56.7
+- **vps01** : 192.168.56.11
+- **vps02** : 192.168.56.12
+- **vps03** : 192.168.56.13
 - ...
-- **vps09** : 10.1.102.19
+- **vps09** : 192.168.56.19
 
 Machines virtuelles
 -------------------
@@ -50,7 +50,7 @@ Machines virtuelles
 Premier démarrage
 *****************
 
-Il est temps d'initialiser une première machine virtuelle. Lors de sa création, son image (Ubuntu 18.04 LTS) va être téléchargée depuis internet si elle n'est pas trouvée sur votre disque. Bien que l'image soit optimisée et compressée, le téléchargement peut être long selon la vitesse de votre connexion à internet.
+Il est temps d'initialiser une première machine virtuelle. Lors de sa création, son image (Debian 10) va être téléchargée depuis internet si elle n'est pas trouvée sur votre disque. Bien que l'image soit optimisée et compressée, le téléchargement peut être long selon la vitesse de votre connexion à internet.
 
 Démarrez la machine d'administration :
 

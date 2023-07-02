@@ -18,7 +18,7 @@ sys.path.append(os.path.abspath('_extensions'))
 # -- Project information -----------------------------------------------------
 
 project = 'Ansible'
-copyright = '2020, Damien Corral'
+copyright = '2023, Damien Corral'
 author = 'Damien Corral'
 
 
@@ -30,6 +30,7 @@ author = 'Damien Corral'
 extensions = [
   'recommonmark',
   'sphinx.ext.autosectionlabel',
+  'sphinx_copybutton',
 ]
 
 autosectionlabel_prefix_document = True
@@ -55,6 +56,8 @@ rst_prolog = """
    <br />
 """
 
+copybutton_prompt_text = r"\(venv\)\$ |\$ "
+copybutton_prompt_is_regexp = True
 
 # -- Options for HTML output -------------------------------------------------
 

@@ -96,7 +96,7 @@ Fichier de configuration :code:`expires.conf` :
 
 Pour le module *headers*, la procédure est la même. Il est intéressant de faire une boucle pour chacune des actions. N'oubliez pas de recharger le service si l'état d'au moins une des deux tâches avait changé.
 
-Ficher de configuration :code:`expires.conf` :
+Ficher de configuration :code:`headers.conf` :
 
 .. code-block:: apache
 
@@ -140,8 +140,8 @@ Tests
 
 Maintenant que la haute disponibilité de l'infrastructure est atteinte, il faut tester la répartition de charge. HAProxy intègre un panneau de supervision sur chaque loadbalancer :
 
-- `<http://admin:admin@10.1.102.11:8080/haproxy>`_ pour lb1
-- `<http://admin:admin@10.1.102.12:8080/haproxy>`_ pour lb2
+- `<http://admin:admin@192.168.56.11:8080/haproxy>`_ pour lb1
+- `<http://admin:admin@192.168.56.12:8080/haproxy>`_ pour lb2
 
 Lancez la commande :code:`curl -i http://www.demain.xyz/testlb.html` à partir du manager puis rafraichissez le panneau de supervision du loadbalancer maître. Répétez plusieurs fois l'opération.
 

@@ -6,7 +6,7 @@ $NUM_VPS = 3
 
 Vagrant.configure("2") do |config|
   # Global configuration
-  config.vm.box = "hashicorp/bionic64"
+  config.vm.box = "bento/debian-10"
   config.ssh.insert_key = false
 
   # Virtualbox provider
@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   # Admin workstation
   config.vm.define "admin", primary: true do |admin|
     admin.vm.hostname = "admin"
-    admin.vm.network "private_network", ip: "10.1.102.7"
+    admin.vm.network "private_network", ip: "192.168.56.7"
     admin.vm.network "forwarded_port", guest: 22, host: 2200, id: "ssh"
   end
 
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
   (1..$NUM_VPS).each do |i|
     config.vm.define vm_name = "vps%02d" % i, autostart: false do |vps|
       vps.vm.hostname = vm_name
-      vps.vm.network "private_network", ip: "10.1.102.#{i+10}"
+      vps.vm.network "private_network", ip: "192.168.56.#{i+10}"
       vps.vm.network "forwarded_port", guest: 22, host: 2200+i, id: "ssh"
     end
   end
@@ -35,6 +35,8 @@ Vagrant.configure("2") do |config|
   # Thin provisioning
   config.vm.provision "shell", args: config.vm.hostname, inline: <<-SHELL
     sudo apt-get update -q 2
-    sudo sed -i -e "2s/.*/127.0.1.1\t$(hostname).demain.xyz\t$(hostname)/" /etc/hosts
+    sudo sed -i -e '2s/.*/127.0.1.1\t'"$(hostname)"'.demain.xyz\t'"$(hostname)"'/' /etc/hosts
+    sudo sed -i -E '/supersede domain-name/ s/^#(.*) ".*"/\\1 "demain.xyz"/' /etc/dhcp/dhclient.conf
+    sudo sed -i -e 's/home/demain.xyz/' /etc/resolv.conf
   SHELL
 end

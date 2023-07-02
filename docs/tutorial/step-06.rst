@@ -17,7 +17,7 @@ Copiez le contenu ci-dessous dans un fichier :code:`nginx.yml` :
        apt: update_cache=yes
 
      - name: install nginx
-       apt: name=nginx-core state=present
+       apt: name=nginx-full state=present
 
      - name: restart nginx
        systemd: name=nginx state=restarted
@@ -41,7 +41,7 @@ Rappelez vous les commandes exécutées précédemment avec la commande :code:`a
 .. code-block:: shell
 
    (venv)$ ansible vps01 -b -m apt -a "update_cache=yes"
-   (venv)$ ansible vps01 -b -m apt -a "name=nginx-core state=present"
+   (venv)$ ansible vps01 -b -m apt -a "name=nginx-full state=present"
    (venv)$ ansible vps01 -b -m systemd -a "name=nginx state=restarted"
 
 .. admonition:: Question

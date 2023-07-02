@@ -11,6 +11,8 @@ Or, si vous rejouez plusieurs fois le playbook :code:`nginx.yml`, vous vous aper
 
 Modifiez votre playbook :code:`nginx.yml` ainsi :
 
+*Pas de copier/coller : supprimez les lignes en rouge et ajoutez les lignes en vert.*
+
 .. code-block:: diff
 
    @@ -3,11 +3,10 @@
@@ -21,19 +23,19 @@ Modifiez votre playbook :code:`nginx.yml` ainsi :
    -    apt: update_cache=yes
    -
       - name: install nginx
-   -    apt: name=nginx-core state=present
-   +    apt: name=nginx-core state=present update_cache=yes
+   -    apt: name=nginx-full state=present
+   +    apt: name=nginx-full state=present update_cache=yes
    +    notify: restart nginx
 
    +  handlers:
       - name: restart nginx
         systemd: name=nginx state=restarted
 
-Désinstallez le package :code:`nginx-core` du serveur avec la commande :code:`ansible` :
+Désinstallez le package :code:`nginx-full` du serveur avec la commande :code:`ansible` :
 
 .. code-block:: shell
 
-   (venv)$ ansible vps01 -b -m apt -a "name=nginx-core state=absent"
+   (venv)$ ansible vps01 -b -m apt -a "name=nginx-full state=absent"
 
 Rejouez le playbook une première fois, puis plusieurs fois.
 

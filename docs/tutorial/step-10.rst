@@ -47,7 +47,7 @@ Et le contenu suivant dans le fichier :code:`data/templates/index.html.j2`
      </head>
      <body>
        Nom de machine : {{ ansible_hostname }}<br>
-       Système : {{ ansible_lsb.are_you_really_sure }}<br>
+       Système : {{ ansible_lsb.description }}<br>
      </body>
    </html>
 
@@ -63,7 +63,7 @@ Créez le playbook :code:`web.yml` :
    - hosts: vps01
      tasks:
      - name: install nginx
-       apt: name=nginx-core state=present
+       apt: name=nginx-full state=present
 
      - name: configure default vhost
        copy:

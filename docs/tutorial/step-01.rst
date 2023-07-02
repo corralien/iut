@@ -15,19 +15,19 @@ Activez l'environnement virtuel et installez Ansible.
 
    $ source venv/bin/activate
    (venv)$ pip install -U pip setuptools
-   (venv)$ pip install ansible
+   (venv)$ pip install "ansible<3"
 
 Vérifiez la bonne installation d'Ansible :
 
 .. code-block:: shell
 
    (venv)$ ansible --version
-   ansible 2.9.9
+   ansible 2.10.17
      config file = None
      configured module search path = ['/home/vagrant/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-     ansible python module location = /home/vagrant/venv/lib/python3.6/site-packages/ansible
-     executable location = /home/vagrant/ansible/venv/bin/ansible
-     python version = 3.6.9 (default, Apr 18 2020, 01:56:04) [GCC 8.4.0]
+     ansible python module location = /home/vagrant/venv/lib/python3.7/site-packages/ansible
+     executable location = /home/vagrant/venv/bin/ansible
+     python version = 3.7.3 (default, Jun 22 2023, 18:03:57) [GCC 8.3.0]
 
 .. note::
 

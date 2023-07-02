@@ -99,7 +99,7 @@ Tests
 
 Même si le réseau est fonctionnel, il est possible que le répartiteur de charge tombe. Il faut donc s'assurer que l'adresse IP virtuelle change bien de loadbalancer.
 
-#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 10.1.102.250.
+#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 192.168.56.250.
 
 #. Affichez le journal de logs en continu du service *keepalived* avec la commande :code:`journalctl -n0 -u keepalived -f`.
 

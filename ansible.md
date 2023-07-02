@@ -1,6 +1,6 @@
 % Ansible
 % Damien Corral &lt;[damien.corral@mines-paristech.fr](mailto:damien.corral@mines-paristech.fr)&gt;
-% Mai 2020 - IUT R&T Administration avancée
+% Juillet 2023 - IUT R&T Administration avancée
 
 # Plan
 

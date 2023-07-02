@@ -50,9 +50,9 @@ Procédez à l'installation du serveur web :code:`nginx` :
 
 .. code-block:: shell
 
-   (venv)$ ansible vps01 -b -m apt -a "name=nginx-core state=present"
+   (venv)$ ansible vps01 -b -m apt -a "name=nginx-full state=present"
 
-Vérifiez la bonne installation du service sur le serveur (:code:`dpkg -l`, :code:`systemctl status`) et que la page web par défaut est bien accessible http://10.1.102.11
+Vérifiez la bonne installation du service sur le serveur (:code:`dpkg -l`, :code:`systemctl status`) et que la page web par défaut est bien accessible http://192.168.56.11
 
 .. admonition:: Question
 
@@ -74,5 +74,5 @@ Redémarrez le serveur web nginx sur le serveur distant :
 
 .. admonition:: Question
 
-   En vous aidant de la documentation du module, stoppez et désactivez le service :code:`ufw`. |br|
+   En vous aidant de la documentation du module, stoppez et désactivez le service :code:`cron`. |br|
    Indiquez la ligne de commande utilisée. Quel est le rôle de ce service ?

@@ -83,7 +83,7 @@ Les boucles
          name: "{{ item }}"
          state: present
        loop:
-       - nginx-core
+       - nginx-full
        - nginx-doc
        - php-fpm
 

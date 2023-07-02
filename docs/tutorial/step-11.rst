@@ -11,9 +11,9 @@ Modifiez votre inventaire :code:`hosts` afin de créer un groupe de serveurs :co
 .. code-block:: cfg
    :linenos:
 
-   vps01 ansible_host=10.1.102.11
-   vps02 ansible_host=10.1.102.12
-   vps03 ansible_host=10.1.102.13
+   vps01 ansible_host=192.168.56.11
+   vps02 ansible_host=192.168.56.12
+   vps03 ansible_host=192.168.56.13
 
    [web]
    vps01

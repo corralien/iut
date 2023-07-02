@@ -61,7 +61,7 @@ Maintenant que notre rôle est créé, il faut un playbook pour pouvoir l'utilis
      roles:
      - nginx
 
-Désinstallez le package :code:`nginx-core` avec la commande :code:`ansible` sur un ou plusieurs de vos serveurs afin de tester les modifications et lancez le playbook :code:`lamp.yml`.
+Désinstallez le package :code:`nginx-full` avec la commande :code:`ansible` sur un ou plusieurs de vos serveurs afin de tester les modifications et lancez le playbook :code:`lamp.yml`.
 
 .. admonition:: Question
 

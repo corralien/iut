@@ -10,7 +10,7 @@ La première étape est de vérifier que l'adresse IP virtuelle (flottante) pass
 
 Pour Keepalived :
 
-#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 10.1.102.250.
+#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 192.168.56.250.
 
 #. Notez la configuration IP de l'interface *eth1* sur chaque loadbalancer avec la commande :code:`ip`.
 
@@ -31,7 +31,7 @@ Pour HAProxy :
 
 Même si le réseau est fonctionnel, il est possible que le répartiteur de charge tombe. Il faut donc s'assurer que l'adresse IP virtuelle change bien de loadbalancer.
 
-#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 10.1.102.250.
+#. Commencez par lancer un :code:`ping` infini (-t sous Windows) à partir de votre hôte physique vers l'adresse IP 192.168.56.250.
 
 #. Affichez le journal de logs en continu du service *keepalived* avec la commande :code:`journalctl -n0 -u keepalived -f`.
 
@@ -49,8 +49,8 @@ Répartition de charge
 
 Maintenant que la haute disponibilité de l'infrastructure est atteinte, il faut tester la répartition de charge. HAProxy intègre un panneau de supervision sur chaque loadbalancer :
 
-- `<http://admin:admin@10.1.102.11:8080/haproxy>`_ pour lb1
-- `<http://admin:admin@10.1.102.12:8080/haproxy>`_ pour lb2
+- `<http://admin:admin@192.168.56.11:8080/haproxy>`_ pour lb1
+- `<http://admin:admin@192.168.56.12:8080/haproxy>`_ pour lb2
 
 Lancez la commande :code:`curl -i http://www.demain.xyz/testlb.html` à partir du manager puis rafraichissez le panneau de supervision du loadbalancer maître. Répétez plusieurs fois l'opération.
 

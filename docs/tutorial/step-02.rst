@@ -3,7 +3,7 @@ Ajout des clés SSH
 
 Comme il a déjà été mentionné, Ansible ne requiert pas l'installation d'un agent sur les serveurs distants mais simplement une connexion SSH.
 
-Dans le but d'établir la communication depuis la machine d'administration (admin) vers les serveurs (vpsXX), créez une paire de clé (privée / publique) sur le manager.
+Dans le but d'établir la communication depuis la machine d'administration (admin) vers les serveurs (vpsXX), créez une paire de clé (privée / publique) sur l'admin.
 
 .. code-block:: shell
 
@@ -19,11 +19,11 @@ Avant de copier la clé SSH, ouvrez un autre terminal et démarrez un nouveau se
 
    $ vagrant up vps01
 
-Depuis le manager, copiez la clé publique dans le compte utilisateur :code:`vagrant` du serveur :
+Depuis l'admin, copiez la clé publique dans le compte utilisateur :code:`vagrant` du serveur :
 
 .. code-block:: shell
 
-   (venv)$ ssh-copy-id -i id_rsa.pub vagrant@10.1.102.11
+   (venv)$ ssh-copy-id -i id_rsa.pub vagrant@192.168.56.11
 
 .. admonition:: Question
 
