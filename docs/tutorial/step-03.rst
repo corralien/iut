@@ -18,7 +18,7 @@ Le fichier de configuration est cherché à plusieurs emplacements dans l'ordre 
 3. :code:`~/.ansible.cfg` dans le répertoire personnel de l'utilisateur
 4. :code:`/etc/ansible/ansible.cfg` dans le répertoire de configuration système
 
-Dans le cadre du tutoriel, c'est l'option 2 qui est retenue pour centraliser l'ensemble de notre travail dans le répertoire :code:`ansible`.
+Dans le cadre du tutoriel, c'est l'option 2 qui est retenue pour centraliser l'ensemble de notre travail dans le répertoire courant.
 
 .. code-block:: cfg
    :linenos:

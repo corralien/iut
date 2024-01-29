@@ -58,8 +58,8 @@ Vérifiez la bonne installation du service sur le serveur (:code:`dpkg -l`, :cod
 
    Relancez la dernière commande. Qu'observez vous ?
 
-   En vous aidant de la documentation du module, désinstallez le service nginx. |br|
-   Indiquez la ligne de commande utilisée
+   En vous aidant de la documentation du module, désinstallez le package `nginx-full`. |br|
+   Indiquez la ligne de commande utilisée. (N'oubliez pas de réinstaller le package pour la suite).
 
 Module :code:`systemd`
 **********************
